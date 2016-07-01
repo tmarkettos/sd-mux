@@ -9,8 +9,8 @@ sd-mux-ctrl - control software for sd-mux devices
 
 .PP
 .B  sd-mux-ctrl [-liuortdspcmvexn?] [-l|--list] [-i|--info] [-u|--status] [-o|--show-serial] [-r|--set-serial=STRING] [-t|--init] [-d|--dut]
-.B [-s|--ts] [-p|--pins=INT] [-c|--tick] [-m|--tick-time=INT] [-v|--device-id=INT] [-e|--device-serial=STRING]
-.B [-x|--vendor=INT] [-n|--invert] [-?|--help] [--usage]
+.B [-s|--ts] [-p|--pins=INT] [-c|--tick] [-y|--dyper1=STRING] [-z|--dyper2=STRING] [-m|--tick-time=INT] [-v|--device-id=INT]
+.B [-e|--device-serial=STRING] [-x|--vendor=INT] [-n|--invert] [-?|--help] [--usage]
 
 .SH DESCRIPTION
 
@@ -250,6 +250,28 @@ If \fB--tick-time\fR is used, then 1000ms is replaced with number of millisecond
 .nf
 
 $ \fBsudo sd-mux-ctrl --device-serial=odroid_u3_1 --tick --tick-time=2000\fR
+
+.fi
+
+.SS \fB\-y, \-\-dyper1\fR
+
+.RS 2
+Disconnect or connect terminals of dynamic jumper. Argument "on" connects and "off" disconnects the terminals.
+.PP
+.nf
+
+$ \fBsudo sd-mux-ctrl --device-serial=odroid_u3_1 --dyper1 on\fR
+
+.fi
+
+.SS \fB\-z, \-\-dyper2\fR
+
+.RS 2
+Disconnect or connect terminals of dynamic jumper. Argument "on" connects and "off" disconnects the terminals.
+.PP
+.nf
+
+$ \fBsudo sd-mux-ctrl --device-serial=odroid_u3_1 --dyper2 on\fR
 
 .fi
 

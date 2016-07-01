@@ -6,7 +6,7 @@
 
 Name:           sd-mux-ctrl
 Summary:        Control software for sd-mux devices.
-Version:        0.0.1
+Version:        0.0.2
 Release:        %{?release_prefix}%{?opensuse_bs:<CI_CNT>.<B_CNT>}%{!?opensuse_bs:0}
 Group:          Development/Tools
 License:        Apache-2.0

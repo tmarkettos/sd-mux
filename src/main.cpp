@@ -34,6 +34,8 @@
 #define USB_SEL         (0x01 << 0x03)
 #define POWER_SW_OFF    (0x01 << 0x02)
 #define POWER_SW_ON     (0x01 << 0x04)
+#define DYPER1          (0x01 << 0x05)
+#define DYPER2          (0x01 << 0x06)
 
 #define DELAY_100MS     100000
 
@@ -48,6 +50,8 @@ enum CCCommand {
     CCC_SetSerial,
     CCC_Init,
     CCC_Status,
+    CCC_DyPer1,
+    CCC_DyPer2,
     CCC_None
 };
 
@@ -62,6 +66,7 @@ enum CCOption {
     CCO_TickTime,
     CCO_BitsInvert,
     CCO_Vendor,
+    CCO_DyPer,
     CCO_MAX
 };
 
@@ -414,6 +419,40 @@ int showStatus(CCOptionValue options[]) {
     return 0;
 }
 
+int setDyPer(CCCommand cmd, CCOptionValue options[]) {
+    unsigned char pins;
+    bool switchOn;
+    int ret = EXIT_SUCCESS, dyper;
+
+    struct ftdi_context *ftdi = prepareDevice(options, &pins);
+    if (ftdi == NULL)
+        return EXIT_FAILURE;
+
+    #define STRON "ON"
+    #define STROFF "OFF"
+
+    if (strncasecmp(STRON, options[CCO_DyPer].args, strlen(STRON)) == 0) {
+      switchOn = true;
+    } else if (strncasecmp(STROFF, options[CCO_DyPer].args, strlen(STROFF)) == 0) {
+      switchOn = false;
+    } else {
+      fprintf(stderr,"Invalid DyPer argument! Use \"on\" or \"off\".\n");
+      goto finish_him;
+    }
+
+    dyper = cmd == CCC_DyPer1 ? DYPER1 : DYPER2;
+    pins = switchOn ? pins | dyper : pins & ~dyper;
+
+    if (writePins(ftdi, pins) != EXIT_SUCCESS)
+        ret = EXIT_FAILURE;
+
+finish_him:
+    ftdi_usb_close(ftdi);
+    ftdi_free(ftdi);
+
+    return ret;
+}
+
 int parseArguments(int argc, const char **argv, CCCommand *cmd, int *arg, char *args, size_t argsLen,
                    CCOptionValue options[]) {
     char c;
@@ -432,6 +471,8 @@ int parseArguments(int argc, const char **argv, CCCommand *cmd, int *arg, char *
             { "pins", 'p', POPT_ARG_INT, arg, 'p', "write pin state in bitbang mode", NULL },
             { "tick", 'c', POPT_ARG_NONE, NULL, 'c', "turn off and on power supply of DUT", NULL },
             { "status", 'u', POPT_ARG_NONE, NULL, 'u', "show current status: DUT or TS or NOINIT", NULL },
+            { "dyper1", 'y', POPT_ARG_STRING, &options[CCO_DyPer].args, 'y', "Connect or disconnect terminals of 1st dynamic jumper; STRING = \"on\" or \"off\"", NULL },
+            { "dyper2", 'z', POPT_ARG_STRING, &options[CCO_DyPer].args, 'z', "Connect or disconnect terminals of 2nd dynamic jumper; STRING = \"on\" or \"off\"", NULL },
             // Options
             { "tick-time", 'm', POPT_ARG_INT, &options[CCO_TickTime].argn, 'm', "set time delay for 'tick' command",
                     NULL },
@@ -482,6 +523,12 @@ int parseArguments(int argc, const char **argv, CCCommand *cmd, int *arg, char *
                 break;
             case 'u':
                 *cmd = CCC_Status;
+                break;
+            case 'y':
+                *cmd = CCC_DyPer1;
+                break;
+            case 'z':
+                *cmd = CCC_DyPer2;
                 break;
             case 'n':
                 options[CCO_BitsInvert].argn = 1;
@@ -538,6 +585,9 @@ int main(int argc, const char **argv) {
         return doPower(true, true, options);
     case CCC_Pins:
         return setPins((unsigned char)arg, options);
+    case CCC_DyPer1:
+    case CCC_DyPer2:
+        return setDyPer(cmd, options);
     case CCC_Status:
         return showStatus(options);
     }
