@@ -1,4 +1,4 @@
-update=Mon 14 Nov 2016 09:04:37 AM CET
+update=Tuesday, 29 August 2017 'pmt' 18:53:14
 version=1
 last_client=kicad
 [pcbnew]
@@ -76,3 +76,4 @@ LibName33=ftdi
 LibName34=ft245RL
 LibName35=switch-ic
 LibName36=induction
+LibName37=fiducial
