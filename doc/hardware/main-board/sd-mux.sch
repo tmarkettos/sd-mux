@@ -34,6 +34,7 @@ LIBS:ftdi
 LIBS:ft245RL
 LIBS:switch-ic
 LIBS:induction
+LIBS:fiducial
 LIBS:sd-mux-cache
 EELAYER 25 0
 EELAYER END
@@ -673,17 +674,6 @@ NoConn ~ 4100 1650
 NoConn ~ 4100 1250
 NoConn ~ 1150 1650
 $Comp
-L CONN_02X02 P9
-U 1 1 55FAB923
-P 14250 8600
-F 0 "P9" V 14250 8450 50  0000 C CNN
-F 1 "CONN_02X02" H 14250 8450 50  0001 C CNN
-F 2 "footprints:PSB_IDC_4x2" H 14250 7400 60  0001 C CNN
-F 3 "" H 14250 7400 60  0000 C CNN
-	1    14250 8600
-	0    1    1    0   
-$EndComp
-$Comp
 L CONN_01X03 P10
 U 1 1 55FAC530
 P 15050 8600
@@ -692,7 +682,7 @@ F 1 "MKDS 1,5/3" H 15050 8400 50  0000 C CNN
 F 2 "footprints:cons_1,5x3" H 15050 8600 60  0001 C CNN
 F 3 "http://www.farnell.com/datasheets/1698833.pdf" H 15050 8600 60  0001 C CNN
 	1    15050 8600
-	1    0    0    -1  
+	1    0    0    1   
 $EndComp
 $Comp
 L CONN_01X03 P7
@@ -703,18 +693,7 @@ F 1 "MKDS 1,5/3" H 10550 8400 50  0000 C CNN
 F 2 "footprints:cons_1,5x3" H 10550 8600 60  0001 C CNN
 F 3 "http://www.farnell.com/datasheets/1698833.pdf" H 10550 8600 60  0001 C CNN
 	1    10550 8600
-	-1   0    0    -1  
-$EndComp
-$Comp
-L CONN_02X02 P8
-U 1 1 55FAD020
-P 11350 8600
-F 0 "P8" V 11350 8450 50  0000 C CNN
-F 1 "CONN_02X02" H 11350 8450 50  0001 C CNN
-F 2 "footprints:PSB_IDC_4x2" H 11350 8750 60  0001 C CNN
-F 3 "" H 11350 7400 60  0000 C CNN
-	1    11350 8600
-	0    1    1    0   
+	-1   0    0    1   
 $EndComp
 $Comp
 L USB_OTG-RESCUE-sd-mux P2
@@ -1161,6 +1140,58 @@ Text Label 13350 4300 0    60   ~ 0
 DAT1
 Text Label 13450 5500 0    60   ~ 0
 DAT3
+Text Label 13450 4400 0    60   ~ 0
+CMD
+Text Label 13550 4500 0    60   ~ 0
+DAT0
+Text Label 13650 4600 0    60   ~ 0
+CLK
+Text Label 13450 5800 0    60   ~ 0
+DAT2
+$Comp
+L Fiducial FID1
+U 1 1 59A5AE52
+P 7000 2450
+F 0 "FID1" H 7000 2300 60  0000 C CNN
+F 1 "Fiducial" H 7050 2600 60  0000 C CNN
+F 2 "Fiducials:Fiducial_1mm_Dia_2.54mm_Outer_CopperTop" H 7000 2450 60  0001 C CNN
+F 3 "" H 7000 2450 60  0001 C CNN
+	1    7000 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Fiducial FID3
+U 1 1 59A5AEDC
+P 7450 2450
+F 0 "FID3" H 7450 2300 60  0000 C CNN
+F 1 "Fiducial" H 7500 2600 60  0000 C CNN
+F 2 "Fiducials:Fiducial_1mm_Dia_2.54mm_Outer_CopperTop" H 7450 2450 60  0001 C CNN
+F 3 "" H 7450 2450 60  0001 C CNN
+	1    7450 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Fiducial FID2
+U 1 1 59A5AF55
+P 7000 3050
+F 0 "FID2" H 7000 2900 60  0000 C CNN
+F 1 "Fiducial" H 7050 3200 60  0000 C CNN
+F 2 "Fiducials:Fiducial_1mm_Dia_2.54mm_Outer_CopperTop" H 7000 3050 60  0001 C CNN
+F 3 "" H 7000 3050 60  0001 C CNN
+	1    7000 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Fiducial FID4
+U 1 1 59A5AFD0
+P 7450 3050
+F 0 "FID4" H 7450 2900 60  0000 C CNN
+F 1 "Fiducial" H 7500 3200 60  0000 C CNN
+F 2 "Fiducials:Fiducial_1mm_Dia_2.54mm_Outer_CopperTop" H 7450 3050 60  0001 C CNN
+F 3 "" H 7450 3050 60  0001 C CNN
+	1    7450 3050
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	13300 5800 14100 5800
 Wire Wire Line
@@ -1384,13 +1415,9 @@ Wire Wire Line
 Wire Wire Line
 	13250 8900 13250 9200
 Wire Wire Line
-	12750 9100 12750 8900
-Wire Wire Line
-	10950 9100 12750 9100
+	12750 8900 12750 9500
 Wire Wire Line
 	12750 8100 12750 8300
-Wire Wire Line
-	10950 8100 12750 8100
 Wire Wire Line
 	12150 7500 12250 7500
 Wire Wire Line
@@ -1442,9 +1469,9 @@ Wire Wire Line
 Wire Wire Line
 	12550 7850 12450 7850
 Wire Wire Line
-	12450 8000 12450 7850
+	12450 7850 12450 8000
 Wire Wire Line
-	10050 8000 12450 8000
+	12450 8000 10050 8000
 Wire Wire Line
 	4100 1350 5250 1350
 Wire Wire Line
@@ -1483,47 +1510,9 @@ Connection ~ 11350 2100
 Wire Wire Line
 	10950 6100 12100 6100
 Wire Wire Line
-	14650 8100 14650 8700
-Wire Wire Line
-	14550 9100 14550 8500
-Wire Wire Line
 	10950 8100 10950 8500
 Wire Wire Line
-	10950 9100 10950 8700
-Wire Wire Line
-	11300 8100 11300 8350
-Connection ~ 11300 8100
-Wire Wire Line
-	11400 8100 11400 8350
-Connection ~ 11400 8100
-Wire Wire Line
-	11300 8850 11300 9100
-Connection ~ 11300 9100
-Wire Wire Line
-	11400 8850 11400 9100
-Connection ~ 11400 9100
-Wire Wire Line
-	14200 8100 14200 8350
-Connection ~ 14200 8100
-Wire Wire Line
-	14300 8100 14300 8350
-Connection ~ 14300 8100
-Wire Wire Line
-	14200 8850 14200 9100
-Connection ~ 14200 9100
-Wire Wire Line
-	14300 9100 14300 8850
-Connection ~ 14300 9100
-Wire Wire Line
-	10750 8600 10850 8600
-Wire Wire Line
-	10850 8600 10850 9150
-Wire Wire Line
-	10850 9150 14750 9150
-Wire Wire Line
-	14750 9150 14750 8600
-Wire Wire Line
-	14750 8600 14850 8600
+	14550 8600 14850 8600
 Wire Wire Line
 	1900 6650 2000 6650
 Wire Wire Line
@@ -1655,21 +1644,9 @@ Wire Wire Line
 Wire Wire Line
 	13600 4900 13300 4900
 Wire Wire Line
-	13000 9100 14550 9100
-Wire Wire Line
 	13000 9100 13000 8900
 Wire Wire Line
-	13000 8100 14650 8100
-Wire Wire Line
-	13000 8300 13000 8100
-Wire Wire Line
-	14650 8700 14850 8700
-Wire Wire Line
-	14550 8500 14850 8500
-Wire Wire Line
 	10950 8500 10750 8500
-Wire Wire Line
-	10950 8700 10750 8700
 Wire Wire Line
 	2200 2200 2200 2150
 Connection ~ 2300 2200
@@ -1818,12 +1795,48 @@ Wire Wire Line
 	14300 4500 13500 4500
 Wire Wire Line
 	13400 4400 14300 4400
-Text Label 13450 4400 0    60   ~ 0
-CMD
-Text Label 13550 4500 0    60   ~ 0
-DAT0
-Text Label 13650 4600 0    60   ~ 0
-CLK
-Text Label 13450 5800 0    60   ~ 0
-DAT2
+Wire Wire Line
+	10750 8600 11050 8600
+Wire Wire Line
+	14850 8500 14750 8500
+Wire Wire Line
+	14750 8500 14750 8100
+Wire Wire Line
+	14850 8700 14750 8700
+Wire Wire Line
+	14750 8700 14750 9650
+Wire Wire Line
+	10850 8700 10850 9650
+Wire Wire Line
+	10850 8700 10750 8700
+Wire Wire Line
+	10950 8100 12750 8100
+Wire Wire Line
+	10850 9650 14750 9650
+Wire Wire Line
+	13000 8150 11050 8150
+Wire Wire Line
+	11050 8150 11050 8600
+Wire Wire Line
+	13000 8150 13000 8300
+Wire Wire Line
+	13000 9100 14550 9100
+Wire Wire Line
+	14550 9100 14550 8600
+Wire Wire Line
+	14750 8100 14150 8100
+Wire Wire Line
+	14150 8100 14150 9500
+Wire Wire Line
+	14150 9500 12750 9500
+Text Label 11100 9650 0    60   ~ 0
+E
+Text Label 14300 8100 0    60   ~ 0
+Lout
+Text Label 14300 9100 0    60   ~ 0
+Lin
+Text Label 11450 8100 0    60   ~ 0
+Nout
+Text Label 12850 8150 0    60   ~ 0
+Nin
 $EndSCHEMATC
