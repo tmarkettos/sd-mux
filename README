@@ -26,3 +26,20 @@ If you want to install files into different directory then add argument to cmake
 Then again run:
  make
  make install
+
+# Upstream
+
+This is a fork of the git repo from https://git.tizen.org/cgit/tools/testlab/sd-mux/
+which is described here: https://wiki.tizen.org/SD_MUX
+
+# Modifications
+
+This version has hardware modified by A. Theodore Markettos to:
+
+* Replace the Micro SD socket with a full-size SD card socket, since we need to use a specific SD card with our FPGA. The downstream adapter boards are still Micro SD format, since we can use adaptors to turn Micro SD into SD when needed.
+* Refactor some of the components displaced by the SD card socket.
+* Rework the relay section so it provides better isolation for mains power, in particular segregating potentially high and low voltage signals. The pin headers have been removed, and wiring rearranged so that 'live' and 'neutral' are not on adjacent pins on the connectors.
+* More conservative design rules to suit PCB Train Express' 24 hour process (which does not provide a solder mask on the Express service)
+* Add fiducials for automated pick and place
+
+The software interface is unchanged.
