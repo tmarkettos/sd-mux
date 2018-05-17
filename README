@@ -39,7 +39,9 @@ This version has hardware modified by A. Theodore Markettos to:
 * Replace the Micro SD socket with a full-size SD card socket, since we need to use a specific SD card with our FPGA. The downstream adapter boards are still Micro SD format, since we can use adaptors to turn Micro SD into SD when needed.
 * Refactor some of the components displaced by the SD card socket.
 * Rework the relay section so it provides better isolation for mains power, in particular segregating potentially high and low voltage signals. The pin headers have been removed, and wiring rearranged so that 'live' and 'neutral' are not on adjacent pins on the connectors.
-* More conservative design rules to suit PCB Train Express' 24 hour process (which does not provide a solder mask on the Express service)
 * Add fiducials for automated pick and place
+* Replace the 8 way headers to the MicroSD adapters with 10 ways, using more common ribbon cables.  Rotate so right-angle connectors can be used.
+* Add spare GPIOs on a header, to match relay boards (eg ebay '4 Channel 5V Relay Module Arduino' with header with GND, 4x GPIOs, 5V)
+* Current target is DirtyPCBs.com 2-layer process: 0.8mm ENIG for the usd-adaptor, 1.6mm for the main board.
 
 The software interface is unchanged.
