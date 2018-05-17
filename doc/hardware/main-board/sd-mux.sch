@@ -919,10 +919,11 @@ L SDCARD J1
 U 1 1 564C4A57
 P 14800 4600
 F 0 "J1" H 14650 5200 60  0000 C CNN
-F 1 "SDCARD" H 14800 4050 60  0000 C CNN
+F 1 "693063020911" H 14900 3900 60  0000 C CNN
 F 2 "EAGLE-INPUT_OUTPUT_CONNECTORS-rev17c:693063020911" H 14800 3900 60  0001 C CNN
 F 3 "" H 14800 4600 60  0000 C CNN
 F 4 "693063020911" H 14800 4600 60  0001 C CNN "mfrn#"
+F 5 "Wurth" H 14800 4600 60  0001 C CNN "mfr"
 	1    14800 4600
 	1    0    0    -1  
 $EndComp
@@ -1931,4 +1932,20 @@ Text Label 5450 1750 0    60   ~ 0
 GP2
 Text Label 5450 1850 0    60   ~ 0
 GP3
+Text Notes 14550 3900 0    60   ~ 0
+SD card socket
+Text Notes 700  6050 0    60   ~ 0
+Switched MicroUSB host\n
+Text Notes 6000 6050 0    60   ~ 0
+Switched USB device DUT
+Text Notes 6450 8000 0    60   ~ 0
+Switched USB device TS
+Text Notes 9100 4350 0    60   ~ 0
+SD card output DUT
+Text Notes 9100 6550 0    60   ~ 0
+SD card output TS
+Text Notes 650  1150 0    60   ~ 0
+MicroUSB host\ncontrol port
+Text Notes 6750 2000 0    60   ~ 0
+GPIO
 $EndSCHEMATC
