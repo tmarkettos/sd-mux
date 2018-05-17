@@ -7,4 +7,4 @@ PRJ=sd-mux
 rm sd-mux-v${VER}.zip
 mv $DIR/$PRJ-Edge.Cuts.gm1 $DIR/$PRJ-Edge.Cuts.gbr
 mv $DIR/$PRJ.drl $DIR/$PRJ.txt
-zip -rv9 $PRJ-$VER.zip $DIR
+zip -rv9 $PRJ-v$VER.zip $DIR
